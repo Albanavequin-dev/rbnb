@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :flats
   has_many :bookings
   validates :email, uniqueness: true, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, length: { minimum: 2 }
+  validates :last_name, length: { minimum: 2 }
   validates :password, length: { minimum: 6 }
 end
