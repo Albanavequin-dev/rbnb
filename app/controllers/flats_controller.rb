@@ -1,5 +1,6 @@
 class FlatsController < ApplicationController
   def index
+    @flats = policy_scope(Flat)
   end
 
   def show
@@ -18,5 +19,10 @@ class FlatsController < ApplicationController
   end
 
   def destroy
+  end
+  private
+
+  def policy_scope(record)
+    Pundit.policy_scope!(current_user, record)
   end
 end
