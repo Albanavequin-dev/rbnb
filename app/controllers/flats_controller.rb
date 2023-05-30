@@ -8,6 +8,7 @@ class FlatsController < ApplicationController
   end
 
   def new
+    @flat = Flat.new
     authorize @flat #line must be at the end of the method WARNING
   end
 
