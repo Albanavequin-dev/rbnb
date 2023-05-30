@@ -4,33 +4,10 @@
       <div class="bg-white rounded p-3 shadow">
         <h3>Create a new flat</h3>
       <%= simple_form_for @flat do |f| %>
-  <%= f.input :address, placeholder: 'Paris...' %>
-  <%= f.input :start_rent_date, placeholder: '2023/06/01' %>
-  <%= f.input :end_rent_date, placeholder: '2023/12/30' %>
-
-  <div class="form-group">
-    <%= f.label :options %><br>
-    <%= f.check_box :wifi %>
-    <%= f.label :wifi, class: 'checkbox-inline' %>
-
-    <%= f.check_box :TV %>
-    <%= f.label :TV, class: 'checkbox-inline' %>
-
-    <%= f.check_box :parking %>
-    <%= f.label :parking, class: 'checkbox-inline' %>
-
-    <%= f.check_box :air_conditioner %>
-    <%= f.label :air_conditioner, class: 'checkbox-inline' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :picture, "Pictures" %><br>
-    <%= f.file_field :picture, multiple: true, accept: 'image/*' %>
-  </div>
-
-  <%= f.button :submit %>
-  
-<% end %>
+        <%= f.input :address, placeholder: 'Paris...' %>
+        <%= f.input :description, placeholder: 'fancy and comfy...' %>
+        <%= f.submit class: 'btn btn-flat' %>
+      <% end %>
       </div>
     </div>
   </div>
