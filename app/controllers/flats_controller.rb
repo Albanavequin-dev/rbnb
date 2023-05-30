@@ -4,7 +4,7 @@ class FlatsController < ApplicationController
   end
 
   def show
-    authorize @flat #line must be at the end of the method WARNING
+    @flats = Flats.all
   end
 
   def new
