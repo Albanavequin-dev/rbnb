@@ -10,6 +10,20 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :first_name,
+                required: true,
+                hint: ("#{@minimum_first_name_length} characters minimum" if @minimum_first_name_length),
+                input_html: { autocomplete: "first_name" } %>
+    <%= f.input :last_name,
+                required: true,
+                hint: ("#{@minimum_last_name_length} characters minimum" if @minimum_last_name_length),
+                input_html: { autocomplete: "last_name" } %>
+    <%= f.input :birthdate,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "birthdate" },
+                start_year: Date.current.year - 12,
+                end_year: Date.current.year - 122 %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
