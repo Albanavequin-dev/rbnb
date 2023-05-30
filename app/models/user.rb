@@ -9,4 +9,8 @@ class User < ApplicationRecord
   validates :first_name, length: { minimum: 2 }
   validates :last_name, length: { minimum: 2 }
   validates :password, length: { minimum: 6 }
+
+  def admin?
+    true
+  end
 end
