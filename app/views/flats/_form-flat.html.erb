@@ -3,6 +3,11 @@
   <%= f.input :address, placeholder: 'Paris...', input_html: { class: 'custom-input' } %>
   <%= f.input :description, placeholder: 'fancy and comfy...', input_html: { class: 'custom-input' } %>
 
+<div>
+
+  <%= f.file_field :image %>
+
+  <%= f.button :submit, "Submit image", class: 'btn btn-flat' %></div>
   <div class="form-group">
     <%= f.label :options %><br>
     <div>

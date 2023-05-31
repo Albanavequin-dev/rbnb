@@ -4,7 +4,7 @@ class FlatsController < ApplicationController
 
 
   def index
-    @flats = Flats.all
+    @flats = Flat.all
     @flats = policy_scope(Flat)
   end
 
@@ -14,14 +14,20 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
+    @flat.image.attach(nil)
     authorize @flat #line must be at the end of the method WARNING
   end
 
   def create
     @flat = Flat.new(flat_params)
-    @flat.save
-    redirect_to flat_path(@flat)
-    authorize @flat #line must be at the end of the method WARNING
+  @flat.image.attach(params[:flat][:image])
+  authorize @flat
+
+  if @flat.save
+    redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
+  else
+    render :new
+  end
   end
 
   def edit
@@ -41,7 +47,7 @@ class FlatsController < ApplicationController
   end
 
   def flat_params
-    params.require(:flat).permit(:address, :description, :wifi, :TV, :parking, :air_conditionner)
+    params.require(:flat).permit(:address, :description, :wifi, :TV, :parking, :air_conditioner, :image)
   end
 
   def set_flat
