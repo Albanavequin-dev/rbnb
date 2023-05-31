@@ -4,7 +4,7 @@ class FlatsController < ApplicationController
 
 
   def index
-    @flats = Flats.all
+    @flats = Flat.all
     @flats = policy_scope(Flat)
   end
 
