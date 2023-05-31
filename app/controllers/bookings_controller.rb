@@ -2,7 +2,18 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookings = Booking.all
+    @bookings = []
+    @allbookings = Booking.all
+    @allbookings.each do |booking|
+      if booking.user == current_user
+        # Si l'utilisateur actuel est le propriétaire de l'appartement,
+        # récupérez toutes les réservations pour cet appartement
+        @bookings << booking
+      elsif booking.flat_id.user == current_user.bookings
+        @bookings << booking
+        # Sinon, récupérez uniquement les réservations de l'utilisateur actuel
+      end
+    end
     @bookings = policy_scope(Booking)
   end
 
@@ -11,14 +22,20 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @flat = Flat.find(params[:flat_id])
     @booking = Booking.new
     authorize @booking #line must be at the end of the method WARNING
   end
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.save
-    redirect_to booking_path(@booking)
+    @booking.user = current_user
+    @booking.flat = Flat.find(params[:flat_id])
+    if @booking.save
+      redirect_to booking_path(@booking)
+    else
+      render :new, status: :unprocessable_entity
+    end
     authorize @booking #line must be at the end of the method WARNING
   end
 

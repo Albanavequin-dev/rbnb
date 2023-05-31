@@ -1,2 +1,10 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<h1>My Bookings :</h1>
+<ul>
+  <% @bookings.each do |booking|%>
+    <div class="container">
+    <li><%= booking.flat.address %> <%= booking.arrival_date %>
+    <%= booking.departure_date %></li>
+    </div>
+  <% end  %>
+</ul>
+<%= link_to  "Back to homepage", flats_path %>
