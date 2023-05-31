@@ -1,0 +1,6 @@
+<%= simple_form_for [@flat, @booking] do |f| %>
+  <%= f.input  :arrival_date, as: :date %>
+  <%= f.input  :departure_date, as: :date %>
+  <%= f.input :message_customer, placeholder: "Hello ! I'm on vacation with a friend..." %>
+  <%= f.submit "Submit demand", class: "btn btn-primary"  %>
+<% end %>
