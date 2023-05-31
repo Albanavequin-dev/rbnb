@@ -13,7 +13,8 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
-    @flat.image.attach(nil)
+    p @flat
+    p @flat.wifi
     authorize @flat #line must be at the end of the method WARNING
 
   end
@@ -33,23 +34,23 @@ class FlatsController < ApplicationController
   def edit
     authorize @flat #line must be at the end of the method WARNING
   end
-  
+
   def update
     @flat.update(flat_params)
     redirect_to flat_path(@flat)
     authorize @flat #line must be at the end of the method WARNING
   end
-  
+
   def destroy
     @flat.destroy
     redirect_to restaurant_path, status: :see_other
     authorize @flat #line must be at the end of the method WARNING
   end
-  
+
   def flat_params
     params.require(:flat).permit(:address, :description, :wifi, :TV, :parking, :air_conditioner, :image)
   end
-  
+
   def set_flat
     @flat = Flat.find(params[:id])
   end
