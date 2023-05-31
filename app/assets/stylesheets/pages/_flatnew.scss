@@ -1,4 +1,8 @@
-.custom-input::selection {
-  background-color: white;
+.custom-placeholder::placeholder {
   color: #68696E;
+}
+
+input[type="text"]:focus {
+  background-color: rgb(255, 255, 255); /* 设置所需的背景颜色 */
+  color: rgb(0, 0, 0); /* 设置所需的文本颜色 */
 }
