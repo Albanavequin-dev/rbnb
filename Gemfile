@@ -52,7 +52,6 @@ gem "devise"
 gem "pundit"
 
 gem "faker"
-gem install htmlbeautifier
 
 
 
