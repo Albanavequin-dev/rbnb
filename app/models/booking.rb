@@ -11,7 +11,7 @@ class Booking < ApplicationRecord
     end
 
     if departure_date.present? && departure_date < arrival_date
-      errors.add(:departure_date, " date cannot be before the arrival date")
+      errors.add(:departure_date, " cannot be before the arrival date")
     end
   end
 end
