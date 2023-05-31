@@ -12,10 +12,14 @@
 <%# <% @flats.each do } %>
 
 
-<h1>Flats#index</h1>
+<h1>Flats</h1>
 
-<p>Find me in app/views/flats/index.html.erb</p>
-<% @flats.each do |flat|%>
-<%= flat.address %>
-<%= flat.description %>
+
+<%= @flats.each do |flat|%>
+<ul>
+<li><%= flat.address %></li>
+<li><%= flat.description %></li>
+</ul>
+
 <% end  %>
+<%= link_to  "Back to homepage", flats_path %>

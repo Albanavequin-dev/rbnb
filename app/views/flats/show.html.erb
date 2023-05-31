@@ -1,6 +1,12 @@
-<h1>Flats#show</h1>
-<p>Find me in app/views/flats/show.html.erb</p>
-<h3><%= @flat.address  %></h3>
-<p><%= @flat.description %></p>
+<h1>Flat Details</h1>
+
+<p>Address: <%= @flat.address %></p>
+<p>Description: <%= @flat.description %></p>
+<p>Wifi: <%= @flat.wifi %></p>
+<p>TV: <%= @flat.TV %></p>
+<p>Parking: <%= @flat.parking %></p>
+<p>Air Conditioner: <%= @flat.air_conditioner %></p>
 
 <%= link_to  "Back to homepage", flats_path %>
+
+
