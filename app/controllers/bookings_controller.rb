@@ -2,8 +2,19 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookings = Booking.all
-    @bookings = policy_scope(Booking)
+    @bookings = []
+    @allbookings = Booking.all
+    @allbookings.each do |booking|
+      if booking.user == current_user
+        # Si l'utilisateur actuel est le propriétaire de l'appartement,
+        # récupérez toutes les réservations pour cet appartement
+        @bookings << booking
+      elsif booking.flat_id.user == current_user.bookings
+        @bookings << booking
+        # Sinon, récupérez uniquement les réservations de l'utilisateur actuel
+      end
+    end
+    authorize @bookings
   end
 
   def show
