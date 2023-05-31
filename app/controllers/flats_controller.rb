@@ -13,8 +13,6 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
-    p @flat
-    p @flat.wifi
     authorize @flat #line must be at the end of the method WARNING
 
   end
