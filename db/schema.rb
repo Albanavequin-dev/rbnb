@@ -50,6 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_053026) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "status"
+    t.string "message_customer"
+    t.string "message_owner"
     t.index ["flat_id"], name: "index_bookings_on_flat_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end

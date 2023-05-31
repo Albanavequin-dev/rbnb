@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
         # Sinon, récupérez uniquement les réservations de l'utilisateur actuel
       end
     end
-    authorize @bookings
+    @bookings = policy_scope(Booking)
   end
 
   def show
