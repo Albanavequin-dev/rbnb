@@ -11,14 +11,21 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @flat = Flat.find(params[:flat_id])
     @booking = Booking.new
     authorize @booking #line must be at the end of the method WARNING
   end
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.save
-    redirect_to booking_path(@booking)
+    @booking.user = current_user
+    @flat = Flat.find(params[:flat_id])
+    @booking.flat = @flat
+    if @booking.save
+      redirect_to booking_path(@booking)
+    else
+      render :new, status: :unprocessable_entity
+    end
     authorize @booking #line must be at the end of the method WARNING
   end
 
