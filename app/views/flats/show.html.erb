@@ -7,6 +7,5 @@
 <p>Parking: <%= @flat.parking %></p>
 <p>Air Conditioner: <%= @flat.air_conditioner %></p>
 
+<%= link_to "Book the place", new_flat_booking_path(@flat) %> <br>
 <%= link_to  "Back to homepage", flats_path %>
-
-
