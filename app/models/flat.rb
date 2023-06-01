@@ -7,5 +7,5 @@ class Flat < ApplicationRecord
   validates :description, length: { minimum: 15 }
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
-  validates_presence_of :images
+  validates_presence_of :image
 end
