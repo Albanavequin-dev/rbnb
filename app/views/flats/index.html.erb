@@ -13,11 +13,11 @@
 
 <h1>Flats</h1>
 
-<div class="img-container">
+<div class="img-container ">
   <% @flats.each do |flat|%>
-  <div class="img-card-item">
+  <div class="img-card-item row justify-content-center">
   <%= image_tag flat.image, class: "img" if flat.image.attached? %>
-        <div class="img-item-container">
+        <div class="img-item-container ">
   <b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %>
   </div>
   </div>

@@ -21,6 +21,14 @@ class FlatsController < ApplicationController
     @flat = Flat.new(flat_params)
     @flat.image.attach(params[:flat][:image])
     @flat.user = current_user
+
+    if params[:flat][:images].present?
+      params[:flat][:images].each do |image|
+        @flat.images.attach(image)
+      end
+    end
+
+
   if @flat.save
     redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
   else
