@@ -14,16 +14,12 @@
 <h1>Flats</h1>
 
 <div class="img-container">
-<% @flats.each do |flat|%>
-<ul>
-
-<li>
-<%= image_tag flat.image, class: "img" if flat.image.attached? %>
-
-<b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %></li>
-</ul>
+  <% @flats.each do |flat|%>
+  <div class="img-card-item">
+  <%= image_tag flat.image, class: "img" if flat.image.attached? %>
+        <div class="img-item-container">
+  <b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %>
+  </div>
+  </div>
+  <% end  %>
 </div>
-
-
-
-<% end  %>
