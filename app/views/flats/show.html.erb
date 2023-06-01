@@ -9,6 +9,6 @@
 <p>Parking: <%= @flat.parking? ? "Yes" : "No" %></p>
 <p>Air Conditioner: <%= @flat.air_conditioner? ? "Yes" : "No" %></p>
 
-<%= link_to "Book the place", new_flat_booking_path(@flat) ,class: ‘btn ban-flat’
-%> <br>
-<%= link_to  "Back to homepage", flats_path,class:’btn btn-flat back-home-btn' %>
+<%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
+<%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %>
+</div>
