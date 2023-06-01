@@ -4,7 +4,6 @@
 
 <p>Address: <%= @flat.address %></p>
 <p>Description: <%= @flat.description %></p>
-
 <p>Wifi: <%= @flat.wifi? ? "Yes" : "No" %></p>
 <p>TV: <%= @flat.TV? ? "Yes" : "No" %></p>
 <p>Parking: <%= @flat.parking? ? "Yes" : "No" %></p>
@@ -13,4 +12,3 @@
 <%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
 <%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %>
 </div>
-
