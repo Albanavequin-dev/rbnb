@@ -9,9 +9,14 @@
 <%= link_to "My booking", bookings_path,class: "btn btn-flat" %>
 </div>
 </div>
-<%# <% @flats.each do } %>
-<h1 style="color:white;">Render the home page</h1>
+
+
+<h1>Flats</h1>
+
+
 <% @flats.each do |flat|%>
-<%= flat.address ,style="color:whit;"%>
-<%= flat.description %>
-<% end %>
+<ul>
+<li><b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %></li>
+</ul>
+
+<% end  %>

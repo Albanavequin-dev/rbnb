@@ -2,7 +2,6 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:show, :index]
 
-
   def index
     @flats = Flat.all
     @flats = policy_scope(Flat)
@@ -16,19 +15,19 @@ class FlatsController < ApplicationController
     @flat = Flat.new
     @flat.image.attach(nil)
     authorize @flat #line must be at the end of the method WARNING
+
   end
 
   def create
     @flat = Flat.new(flat_params)
+    @flat.image.attach(params[:flat][:image])
     @flat.user = current_user
-  @flat.image.attach(params[:flat][:image])
-  authorize @flat
-
-    if @flat.save
-      redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
-    else
-      render :new, status: :unprocessable_entity
-    end
+  if @flat.save
+    redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
+  else
+    render :new, status: :unprocessable_entity
+  end
+     authorize @flat #line must be at the end of the method WARNING
   end
 
   def edit

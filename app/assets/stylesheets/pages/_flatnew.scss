@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 .custom-placeholder::placeholder {
   color: #68696E;
+=======
+
+.custom-input::selection {
+  background-color: white;
+  color: $gray;
+>>>>>>> ac5c79a209f3caf1c9ce768f7be5384d462dce29
 }
 
 input[type="text"]:focus {
