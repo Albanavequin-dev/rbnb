@@ -21,11 +21,10 @@
 
 <h1>Flats</h1>
 
-                    <% if @address.present? %>
-  <h3>Results for "<%= @address %>":</h3>
-  
-
+  <% if @address.present? %>
+<h3>Results for "<%= (@address) %>":</h3>
 <% end %>
+
 <div class="grid-container ">
   <% @flats.each do |flat|%>
   <div class="img-card-item row justify-content-center">
@@ -36,5 +35,3 @@
   </div>
   <% end  %>
 </div>
-
-
