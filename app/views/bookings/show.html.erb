@@ -1,3 +1,4 @@
+<div class="booking-detail">
 <h1>Booking Details</h1>
 <a href="<%= bookings_path %>">
   <i class="fa-solid fa-arrow-left fa-2x"></i>
@@ -25,3 +26,9 @@
    <%= link_to "Contact the owner", "mailto:#{@booking.flat.user.email}", class: "btn btn-primary" %>
   </div>
 </div>
+
+<%= link_to "Contact the owner", "mailto:#{@booking.flat.user.email}", class: 'btn btn-flat btn-booking'%>
+<%= link_to "Back to My Bookings", bookings_path, class: 'btn btn-flat btn-booking' %>
+
+</div>
+
