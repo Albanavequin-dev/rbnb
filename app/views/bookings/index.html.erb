@@ -1,10 +1,64 @@
-<h1>My Bookings :</h1>
-<ul>
-  <% @bookings.each do |booking|%>
+<div data-controller="show-rentals-bookings">
+  <div data-show-rentals-bookings-target="bookings">
+
+    <h1>My Bookings:</h1>
     <div class="container">
-    <li><%= booking.flat.address %> <%= booking.arrival_date %>
-    <%= booking.departure_date %></li>
+    <br>
+      <%= link_to "My Rentals", "#", class: "btn btn-primary", data: { action:"click->show-rentals-bookings#toggle" } %>
+    <br><br>
     </div>
-  <% end  %>
-</ul>
-<%= link_to  "Back to homepage", flats_path %>
+
+    <div class="container">
+      <div class="row">
+        <% @bookings.each do |booking| %>
+          <% days_remaining = (booking.arrival_date - Date.today).to_i %>
+          <% if days_remaining >= 0 %>
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to booking.flat.name, booking_path(booking) %></h5>
+                  <p class="card-text"><%= booking.flat.address %></p>
+                  <p class="card-text">Arrival: <%= booking.arrival_date.strftime('%d/%m/%Y') %></p>
+                  <p class="card-text">Departure: <%= booking.departure_date.strftime('%d/%m/%Y') %></p>
+                  <% message = "Only #{days_remaining} day(s) left until your arrival" %>
+                  <%= message %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div data-show-rentals-bookings-target="rentals" class="d-none">
+
+    <h1>My Rentals:</h1>
+    <div class="container">
+      <br>
+      <%= link_to "My Bookings", "#", class: "btn btn-secondary ml-auto", data: { action:"click->show-rentals-bookings#toggle" } %>
+      <br><br>
+    </div>
+    <div class="container">
+      <div class="row">
+        <% @rentals.each do |rental| %>
+          <% days_remaining = (rental.arrival_date - Date.today).to_i %>
+          <% if days_remaining >= 0 %>
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to rental.flat.name, booking_path(rental) %></h5>
+                  <p class="card-text"><%= rental.flat.address %></p>
+                  <p class="card-text">Arrival: <%= rental.arrival_date.strftime('%d/%m/%Y') %></p>
+                  <p class="card-text">Departure: <%= rental.departure_date.strftime('%d/%m/%Y') %></p>
+                  <% message = "Only #{days_remaining} day(s) left until your guess arrival" %>
+                  <%= message %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
