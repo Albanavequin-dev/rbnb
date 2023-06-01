@@ -13,7 +13,7 @@
 
 <h1>Flats</h1>
 
-<div class="img-container ">
+<div class="grid-container ">
   <% @flats.each do |flat|%>
   <div class="img-card-item row justify-content-center">
   <%= image_tag flat.image, class: "img" if flat.image.attached? %>
