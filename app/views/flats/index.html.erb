@@ -5,7 +5,7 @@
   <%= link_to "Create a flat", new_flat_path, class: "btn btn-primary" %></div>
 
   <div class="flex-item2">
-  <%= link_to "My booking", bookings_path,class: "btn btn-primary" %></div>
+  <%= link_to "My bookings and rentals", bookings_path,class: "btn btn-primary" %></div>
 
   <div class="flex-item3">
     <%= form_with url: flats_path, method: :get, class: "d-flex" do %>
@@ -21,8 +21,9 @@
 
 <h1>Flats</h1>
 
-  <% if @address.present? %>
-<h3>Results for "<%= (@address) %>":</h3>
+
+<% if @address.present? %>
+  <h3>Results for "<%= (@address) %>":</h3>
 <% end %>
 
 <div class="grid-container ">

@@ -47,8 +47,11 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking.destroy
-    redirect_to booking_path, status: :see_other
+    if @booking.destroy
+      redirect_to bookings_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
     authorize @booking #line must be at the end of the method WARNING
   end
 
