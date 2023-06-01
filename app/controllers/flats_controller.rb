@@ -30,9 +30,10 @@ class FlatsController < ApplicationController
     @flat.image.attach(params[:flat][:image])
     @flat.user = current_user
 
-  if @flat.save
+  if @flat.save && @flat.image.present?
     redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
   else
+    flash.now[:alert] = 'Please upload an image.'
     render :new, status: :unprocessable_entity
   end
      authorize @flat #line must be at the end of the method WARNING
