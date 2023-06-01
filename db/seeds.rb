@@ -8,6 +8,7 @@
 require 'faker'
 require 'geocoder'
 
+Booking.destroy_all
 Flat.destroy_all
 
 

@@ -16,6 +16,11 @@ class BookingsController < ApplicationController
 
   def show
     authorize @booking #line must be at the end of the method WARNING
+    if @booking.user == current_user
+      @my_booking = @booking
+    elsif @booking.flat.user == current_user
+      @my_rental = @booking
+    end
   end
 
   def new
@@ -38,6 +43,11 @@ class BookingsController < ApplicationController
 
   def edit
     authorize @booking #line must be at the end of the method WARNING
+    if @booking.user == current_user
+      @my_booking = @booking
+    elsif @booking.flat.user == current_user
+      @my_rental = @booking
+    end
   end
 
   def update
@@ -58,7 +68,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:arrival_date, :departure_date, :message_customer, :message_owner)
+    params.require(:booking).permit(:arrival_date, :departure_date, :message_customer, :message_owner, :status)
   end
 
   def set_booking
