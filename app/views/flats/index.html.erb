@@ -13,7 +13,7 @@
 
 <h1>Flats</h1>
 
-
+<div class="img-container">
 <% @flats.each do |flat|%>
 <ul>
 
@@ -22,6 +22,8 @@
 
 <b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %></li>
 </ul>
+</div>
+
 
 
 <% end  %>
