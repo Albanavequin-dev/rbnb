@@ -41,8 +41,9 @@
 }
 
 .img-card-item img {
-  margin-top: 20px;
-  border-radius: 25px;
+  margin-top: 0px;
+  padding:0px;
+  border-radius: 8px;
 }
 
 .img-item-container a {
@@ -73,12 +74,13 @@
 }
 
 
-  .btn-flat {
-    margin-top: 10px;
-  }
+.btn-flat {
+  margin-top: 10px;
+}
 
 
 #img {
+  margin: 0px;
   width: 400px;
   height: 400px;
   border-radius: 8px;
