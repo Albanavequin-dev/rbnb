@@ -7,8 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 require 'geocoder'
-Booking.destroy_all
 Flat.destroy_all
+
 
 10.times do
   User.create!(
