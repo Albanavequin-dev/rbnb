@@ -1,5 +1,10 @@
 <div data-controller="show-rentals-bookings">
   <div data-show-rentals-bookings-target="bookings">
+<% if @bookings.any? { |booking| booking.status != true && booking.status != false } %>
+  <div class="alert alert-warning" role="alert">
+    You have pending requests for your flats! Go to <%= link_to "your rentals", "#", data: { action: "click->show-rentals-bookings#toggle" } %>!
+  </div>
+<% end %>
 
     <h1>My Bookings:</h1>
     <div class="container">
@@ -27,7 +32,7 @@
                   <% elsif booking.status == false %>
                   <p class="card-text red">Denied</p>
                   <% else %>
-                  <em class="card-text">Booking requested</em>
+                  <em class="card-text text-info">Booking requested</em>
                   <% end %>
                 </div>
               </div>
@@ -60,7 +65,14 @@
                   <p class="card-text">Arrival: <%= rental.arrival_date.strftime('%d/%m/%Y') %></p>
                   <p class="card-text">Departure: <%= rental.departure_date.strftime('%d/%m/%Y') %></p>
                   <% message = "Only #{days_remaining} day(s) left until your guess arrival" %>
+                  <% if rental.status == true %>
                   <%= message %>
+                  <p class="card-text text-success">Accepted</p>
+                  <% elsif rental.status == false %>
+                  <p class="card-text text-danger">Denied</p>
+                  <% else %>
+                  <em class="card-text text-info">Booking requested</em>
+                  <% end %>
                 </div>
               </div>
             </div>

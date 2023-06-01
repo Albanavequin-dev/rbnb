@@ -1,34 +1,71 @@
-<div class="booking-detail">
-<h1>Booking Details</h1>
-<a href="<%= bookings_path %>">
-  <i class="fa-solid fa-arrow-left fa-2x"></i>
-</a>
-<div class="card">
-  <div class="card-body">
-    <h3 class="card-title"><%= @booking.flat.name %></h3>
-    <%= link_to "Edit my booking", edit_booking_path(@booking), class: "btn btn-warning btn-edit" %>
-    <%= link_to "Delete my booking", booking_path(@booking),  data: { turbo_confirm: "Are you sure you want to delete this booking?", turbo_method: :delete }, class: "btn btn-danger btn-edit" %>
-    <p class="card-text"><%= @booking.flat.address %></p>
-    <p class="card-text">Arrival: <%= @booking.arrival_date.strftime('%d/%m/%Y') %></p>
-    <p class="card-text">Departure: <%= @booking.departure_date.strftime('%d/%m/%Y') %></p>
-    <p class="card-text">Owner : <%= @booking.flat.user.first_name %> <%= @booking.flat.user.last_name %></p>
-    <p class="card-text">Total Price: 153,25 €</p>
-    <% days_remaining = (@booking.arrival_date - Date.today).to_i %>
-    <% message = "Only #{days_remaining} day(s) left until your arrival" %>
-    <% if @booking.status == true %>
-      <%= message %>
-      <p class="card-text green">Accepted</p>
-    <% elsif @booking.status == false %>
-      <p class="card-text red">Denied</p>
-    <% else %>
-      <em class="card-text">Booking requested</em>
-    <% end %>
-   <%= link_to "Contact the owner", "mailto:#{@booking.flat.user.email}", class: "btn btn-primary" %>
-   <%= link_to "Back to My Bookings", bookings_path, class: 'btn btn-flat btn-booking' %>
 
+<% if @my_rental.nil? %>
+  <h1>Booking Details</h1>
+  <a href="<%= bookings_path %>">
+    <i class="fa-solid fa-arrow-left fa-2x"></i>
+  </a>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title"><%= @my_booking.flat.name %></h3>
+      <%= link_to "Edit my booking", edit_booking_path(@my_booking), class: "btn btn-warning btn-edit" %>
+      <%= link_to "Delete my booking", booking_path(@my_booking),  data: { turbo_confirm: "Are you sure you want to delete this booking?", turbo_method: :delete }, class: "btn btn-danger" %>
+      <p class="card-text"><%= @my_booking.flat.address %></p>
+      <p class="card-text">Arrival: <%= @my_booking.arrival_date.strftime('%d/%m/%Y') %></p>
+      <p class="card-text">Departure: <%= @my_booking.departure_date.strftime('%d/%m/%Y') %></p>
+      <p class="card-text">Owner : <%= @my_booking.flat.user.first_name %> <%= @my_booking.flat.user.last_name %></p>
+      <p class="card-text">Total Price: 153,25 €</p>
+      <% if @my_booking.message_customer.present? %>
+        <p class="card-text"><b>Message of the owner:</b> <br>
+        <em><%= @my_booking.message_customer %><em></p>
+      <% end %>
+      <% days_remaining = (@my_booking.arrival_date - Date.today).to_i %>
+      <% message = "Only #{days_remaining} day(s) left until your arrival" %>
+      <% if @my_booking.status == true %>
+        <%= message %>
+        <p class="card-text text-success">Accepted</p>
+      <% elsif @my_booking.status == false %>
+        <p class="card-text text-danger">Denied</p>
+      <% else %>
+        <em class="card-text">Booking requested</em>
+      <% end %>
+       <% if @my_booking.message_owner.present? %>
+        <p class="card-text text-info"><b>Message of the tenant:</b> <br>
+        <em><%= @my_booking.message_owner %><em></p>
+      <% end %>
+     <%= link_to "Contact the owner", "mailto:#{@my_booking.flat.user.email}", class: "btn btn-primary" %>
+ <%= link_to "Back to My Bookings", bookings_path, class: 'btn btn-flat btn-booking' %>
+    </div>
   </div>
-</div>
 
 
-
-</div>
+<% else %>
+  <h1>Rental Details</h1>
+  <a href="<%= bookings_path %>">
+    <i class="fa-solid fa-arrow-left fa-2x"></i>
+  </a>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title"><%= @my_rental.flat.name %></h3>
+      <p class="card-text"><%= @my_rental.flat.address %></p>
+      <p class="card-text">Tenant: <%= @my_rental.user.first_name %> <%= @my_rental.user.last_name %></p>
+      <p class="card-text">Arrival: <%= @my_rental.arrival_date.strftime('%d/%m/%Y') %></p>
+      <p class="card-text">Departure: <%= @my_rental.departure_date.strftime('%d/%m/%Y') %></p>
+      <% if @my_rental.message_customer.present? %>
+        <p class="card-text"><b>Message of the tenant:</b> <br>
+        <em><%= @my_rental.message_customer %><em></p>
+      <% end %>
+      <% days_remaining = (@my_rental.arrival_date - Date.today).to_i %>
+      <% message = "Only #{days_remaining} day(s) left until your arrival" %>
+      <% if @my_rental.status == true %>
+        <%= message %>
+        <p class="card-text text-success">Accepted</p>
+      <% elsif @my_rental.status == false %>
+        <p class="card-text text-danger">Denied</p>
+      <% else %>
+        <em class="card-text text-info">Rental requested</em> <br>
+        <%= link_to "Accept or refuse", edit_booking_path(@my_rental), class: "btn btn-warning" %>
+      <% end %>
+      <%= link_to "Contact the tenant", "mailto:#{@my_rental.user.email}", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
