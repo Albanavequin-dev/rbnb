@@ -3,5 +3,5 @@ class Flat < ApplicationRecord
   belongs_to :user
   validates :name, presence: true, uniqueness: true, length: { minimum: 4 }
   validates :address, presence: true, uniqueness: true, length: { minimum: 4 }
-  validates :description, length: { minimum: 15 }
+  validates :description, length: { minimum: 8 }
 end
