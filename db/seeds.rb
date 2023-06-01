@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
+require 'geocoder'
+Flat.destroy_all
 
 10.times do
   User.create!(
@@ -19,17 +21,30 @@ end
 
 users = User.all
 
-10.times do
-  flat = Flat.new(
-    name: Faker::Lorem.word,
-    address: Faker::Address.full_address,
-    description: Faker::Lorem.paragraph,
-    wifi: [true, false].sample,
-    TV: [true, false].sample,
-    parking: [true, false].sample,
-    air_conditioner: [true, false].sample
-  )
+ad = ['41 Stewart St, Melbourne',
+      "10 Downing Street, London, United Kingdom",
+      "1600 Pennsylvania Avenue NW, Washington, D.C., United States",
+      "Champs-Élysées, Paris, France",
+      "Kremlin, Moscow, Russia",
+      "Brandenburg Gate, Berlin, Germany",
+      "Tokyo Tower, Tokyo, Japan",
+      "Sydney Opera House, Sydney, Australia",
+      "Rue de Rivoli, Paris, France",
+      "Piazza di Trevi, Rome, Italy"
+    ]
 
-  flat.user = users.sample
-  flat.save
+ad.each do |address|
+  10.times do
+    flat = Flat.new(
+      name: Faker::Lorem.word,
+      address: address,
+      description: Faker::Lorem.paragraph,
+      wifi: [true, false].sample,
+      TV: [true, false].sample,
+      parking: [true, false].sample,
+      air_conditioner: [true, false].sample
+    )
+    flat.user = users.sample
+    flat.save
+  end
 end
