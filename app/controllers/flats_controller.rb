@@ -13,7 +13,6 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
-    @flat.image.attach(nil)
     authorize @flat #line must be at the end of the method WARNING
 
   end
@@ -47,7 +46,7 @@ class FlatsController < ApplicationController
   end
 
   def flat_params
-    params.require(:flat).permit(:address, :description, :wifi, :TV, :parking, :air_conditioner, :image)
+    params.require(:flat).permit(:name, :address, :description, :wifi, :TV, :parking, :air_conditioner, :image)
   end
 
   def set_flat
