@@ -54,6 +54,7 @@ gem "pundit"
 
 gem "faker"
 
+gem 'geocoder'
 
 
 gem "autoprefixer-rails"
