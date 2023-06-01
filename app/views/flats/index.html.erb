@@ -16,7 +16,12 @@
 
 <% @flats.each do |flat|%>
 <ul>
-<li><b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %></li>
+
+<li>
+<%= image_tag flat.image, class: "img" if flat.image.attached? %>
+
+<b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %></li>
 </ul>
+
 
 <% end  %>
