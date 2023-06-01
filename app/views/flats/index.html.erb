@@ -1,25 +1,40 @@
 <div class="flex-container">
-<div class="flex-item1">
-<%= link_to "Create a flat", new_flat_path, class: "btn btn-flat" %>
-</div>
-<div class="flex-item2">
-<%= link_to "Search the place & date" , new_flat_path, class: "btn btn-flat"%>
-</div>
-<div class="flex-item3">
-<%= link_to "My booking", bookings_path,class: "btn btn-flat" %>
-</div>
+
+
+  <div class="flex-item1">
+  <%= link_to "Create a flat", new_flat_path, class: "btn btn-primary" %></div>
+
+  <div class="flex-item2">
+  <%= link_to "My booking", bookings_path,class: "btn btn-primary" %></div>
+
+  <div class="flex-item3">
+    <%= form_with url: flats_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :address,
+            params[:address],
+            class: "form-control",
+            placeholder: "Type a location"
+       %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %></div>
 </div>
 
 
 <h1>Flats</h1>
 
+                    <% if @address.present? %>
+  <h3>Results for "<%= @address %>":</h3>
+  
+
+<% end %>
 <div class="grid-container ">
   <% @flats.each do |flat|%>
   <div class="img-card-item row justify-content-center">
   <%= image_tag flat.image, class: "img" if flat.image.attached? %>
         <div class="img-item-container ">
-  <b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %>
+ <b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %>
   </div>
   </div>
   <% end  %>
 </div>
+
+
