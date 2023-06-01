@@ -1,5 +1,6 @@
 <div class="flex-container">
 
+
   <div class="flex-item1">
   <%= link_to "Create a flat", new_flat_path, class: "btn btn-primary" %></div>
 
@@ -20,15 +21,20 @@
 
 <h1>Flats</h1>
 
-<% if @address.present? %>
+                    <% if @address.present? %>
   <h3>Results for "<%= @address %>":</h3>
   
 
 <% end %>
+<div class="grid-container ">
+  <% @flats.each do |flat|%>
+  <div class="img-card-item row justify-content-center">
+  <%= image_tag flat.image, class: "img" if flat.image.attached? %>
+        <div class="img-item-container ">
+ <b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %>
+  </div>
+  </div>
+  <% end  %>
+</div>
 
-<% @flats.each do |flat|%>
-<ul>
-<li><b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %></li>
-</ul>
 
-<% end  %>
