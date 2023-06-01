@@ -1,3 +1,4 @@
+<div class="booking-detail">
 <h1>Booking Details</h1>
 
 <div class="card">
@@ -11,5 +12,7 @@
   </div>
 </div>
 
-<%= link_to "Contact the owner", "mailto:#{@booking.flat.user.email}", class: "btn btn-primary" %>
-<%= link_to "Back to My Bookings", bookings_path, class: "btn btn-primary" %>
+<%= link_to "Contact the owner", "mailto:#{@booking.flat.user.email}", class: 'btn btn-flat btn-booking'%>
+<%= link_to "Back to My Bookings", bookings_path, class: 'btn btn-flat btn-booking' %>
+
+</div>

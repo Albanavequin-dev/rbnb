@@ -19,7 +19,9 @@
   gap: 30px;
   justify-items: center;
   padding: 0 100px;
+  padding-top: 20px;
 }
+
 .img-card-item {
   border: 1px solid black;
   border-radius: 8px;
@@ -38,6 +40,11 @@
   padding: 10px;
 }
 
+.img-card-item img {
+  margin-top: 20px;
+  border-radius: 25px;
+}
+
 .img-item-container a {
   text-decoration: none;
   color: inherit;
@@ -47,5 +54,36 @@
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
-  /* 可根据需要进行调整 */
 }
+
+.grid-container :hover {
+  box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flat-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#img {
+  width: 400px;
+  height: 400px;
+  border-radius: 8px;
+ }
+
+ .back-home-btn {
+  margin-top: 10px;
+ }
+
+ .booking-detail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ }
+
+ .btn-booking {
+  margin-top: 10px;
+ }

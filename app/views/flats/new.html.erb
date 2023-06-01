@@ -4,8 +4,9 @@
       <div class="bg-white rounded p-3 shadow">
         <h3>Create a new flat</h3>
           <%= render "form-flat", task: @flat %>
+            <%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat' %>
+
       </div>
     </div>
   </div>
 </div>
-<%= link_to  "Back to homepage", flats_path %>

@@ -23,30 +23,18 @@
 
 <% end %>
 
-<<<<<<< HEAD
-=======
-                    <% if @address.present? %>
+  <% if @address.present? %>
   <h3>Results for "<%= @address %>":</h3>
 
 
 <% end %>
->>>>>>> 463c5c1e6b77a8c1abfe0fddfa8e6dd8d96a6c73
 <div class="grid-container ">
   <% @flats.each do |flat|%>
   <div class="img-card-item row justify-content-center">
   <%= image_tag flat.image, class: "img" if flat.image.attached? %>
         <div class="img-item-container ">
-<<<<<<< HEAD
-<b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %>
-=======
  <b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %>
->>>>>>> 463c5c1e6b77a8c1abfe0fddfa8e6dd8d96a6c73
   </div>
   </div>
   <% end  %>
 </div>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 463c5c1e6b77a8c1abfe0fddfa8e6dd8d96a6c73
