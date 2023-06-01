@@ -5,7 +5,15 @@ class FlatsController < ApplicationController
   def index
     @flats = Flat.all
     @flats = policy_scope(Flat)
+      if params[:address].present?
+        @address = params[:address]
+        @latitude, @longitude = Geocoder.coordinates(@address)
+        @flats = Flat.near([@latitude, @longitude], 35)
+      else
+        @flats = Flat.all
+      end
   end
+
 
   def show
     authorize @flat

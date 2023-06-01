@@ -4,4 +4,5 @@ class Flat < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { minimum: 4 }
   validates :address, presence: true, uniqueness: true, length: { minimum: 4 }
   validates :description, length: { minimum: 15 }
+  geocoded_by :address
 end
