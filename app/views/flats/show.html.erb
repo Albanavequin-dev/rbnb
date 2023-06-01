@@ -1,5 +1,6 @@
 <h1>Flat Details</h1>
-<%= image_tag @flat.image, class: "img" if @flat.image.attached? %>
+<div class="flat-container">
+<%= image_tag @flat.image, id: "img" if @flat.image.attached? %>
 
 <p>Address: <%= @flat.address %></p>
 <p>Description: <%= @flat.description %></p>
@@ -8,6 +9,6 @@
 <p>Parking: <%= @flat.parking? ? "Yes" : "No" %></p>
 <p>Air Conditioner: <%= @flat.air_conditioner? ? "Yes" : "No" %></p>
 
-<%= link_to "Book the place", new_flat_booking_path(@flat) %> <br>
-<%= link_to  "Back to homepage", flats_path %>
-
+<%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
+<%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %>
+</div>
