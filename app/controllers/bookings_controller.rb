@@ -3,18 +3,17 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = []
+    @rentals = []
     @allbookings = Booking.all
     @allbookings.each do |booking|
       if booking.user == current_user
-        # Si l'utilisateur actuel est le propriétaire de l'appartement,
-        # récupérez toutes les réservations pour cet appartement
         @bookings << booking
-      elsif booking.flat_id.user == current_user.bookings
-        @bookings << booking
-        # Sinon, récupérez uniquement les réservations de l'utilisateur actuel
+      elsif booking.flat.user == current_user
+        @rentals << booking
       end
     end
     @bookings = policy_scope(Booking)
+    @rentals = policy_scope(Booking)
   end
 
   def show
