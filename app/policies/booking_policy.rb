@@ -7,9 +7,6 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def show?
-    p user
-    p record.user
-    p record.flat.user
     record.user == user || record.flat.user == user
   end
 
