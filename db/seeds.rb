@@ -8,7 +8,7 @@
 require 'faker'
 
 10.times do
-  User.create(
+  User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     birthdate: Faker::Date.birthday(min_age: 18, max_age: 65).strftime("%Y-%m-%d"),
@@ -17,9 +17,19 @@ require 'faker'
   )
 end
 
+users = User.all
+
 10.times do
-  Flat.create(
+  flat = Flat.new(
+    name: Faker::Lorem.word,
     address: Faker::Address.full_address,
-    description: Faker::Lorem.paragraph
+    description: Faker::Lorem.paragraph,
+    wifi: [true, false].sample,
+    TV: [true, false].sample,
+    parking: [true, false].sample,
+    air_conditioner: [true, false].sample
   )
+
+  flat.user = users.sample
+  flat.save
 end

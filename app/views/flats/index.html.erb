@@ -16,7 +16,7 @@
 
 <% @flats.each do |flat|%>
 <ul>
-<li><b><%= link_to  flat.address,  flat_path(flat)%> </b>: <%= flat.description  %></li>
+<li><b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %></li>
 </ul>
 
 <% end  %>
