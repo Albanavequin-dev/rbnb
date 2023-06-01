@@ -21,7 +21,14 @@
                   <p class="card-text">Arrival: <%= booking.arrival_date.strftime('%d/%m/%Y') %></p>
                   <p class="card-text">Departure: <%= booking.departure_date.strftime('%d/%m/%Y') %></p>
                   <% message = "Only #{days_remaining} day(s) left until your arrival" %>
+                  <% if booking.status == true %>
                   <%= message %>
+                  <p class="card-text green">Accepted</p>
+                  <% elsif booking.status == false %>
+                  <p class="card-text red">Denied</p>
+                  <% else %>
+                  <em class="card-text">Booking requested</em>
+                  <% end %>
                 </div>
               </div>
             </div>
