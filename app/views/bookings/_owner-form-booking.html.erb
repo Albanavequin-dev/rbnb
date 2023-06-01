@@ -1,6 +1,6 @@
 <%= simple_form_for [@flat, @booking] do |f| %>
     <%= f.check_box :status %>
-    <%= f.label :status, class: 'checkbox-inline wifi' %>
-  <%= f.input :message_customer, placeholder: "Hello ! I'm on vacation with a friend..." %>
+    <%= f.label :status, "I accept the booking demand", class: 'checkbox-inline wifi' %>
+  <%= f.input :message_owner, placeholder: "Hello ! I'll be glad to welcome you in my house..." %>
   <%= f.submit "Send answer", class: "btn btn-primary"  %>
 <% end %>

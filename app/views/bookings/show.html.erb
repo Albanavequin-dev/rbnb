@@ -13,18 +13,22 @@
       <p class="card-text">Departure: <%= @my_booking.departure_date.strftime('%d/%m/%Y') %></p>
       <p class="card-text">Owner : <%= @my_booking.flat.user.first_name %> <%= @my_booking.flat.user.last_name %></p>
       <p class="card-text">Total Price: 153,25 €</p>
+      <% if @my_booking.message_customer.present? %>
+        <p class="card-text"><b>Message of the owner:</b> <br>
+        <em><%= @my_booking.message_customer %><em></p>
+      <% end %>
       <% days_remaining = (@my_booking.arrival_date - Date.today).to_i %>
       <% message = "Only #{days_remaining} day(s) left until your arrival" %>
       <% if @my_booking.status == true %>
         <%= message %>
-        <p class="card-text green">Accepted</p>
+        <p class="card-text text-success">Accepted</p>
       <% elsif @my_booking.status == false %>
-        <p class="card-text red">Denied</p>
+        <p class="card-text text-danger">Denied</p>
       <% else %>
         <em class="card-text">Booking requested</em>
       <% end %>
        <% if @my_booking.message_owner.present? %>
-        <p class="card-text"><b>Message of the tenant:</b> <br>
+        <p class="card-text text-info"><b>Message of the tenant:</b> <br>
         <em><%= @my_booking.message_owner %><em></p>
       <% end %>
      <%= link_to "Contact the owner", "mailto:#{@my_booking.flat.user.email}", class: "btn btn-primary" %>
@@ -52,11 +56,11 @@
       <% message = "Only #{days_remaining} day(s) left until your arrival" %>
       <% if @my_rental.status == true %>
         <%= message %>
-        <p class="card-text green">Accepted</p>
+        <p class="card-text text-success">Accepted</p>
       <% elsif @my_rental.status == false %>
-        <p class="card-text red">Denied</p>
+        <p class="card-text text-danger">Denied</p>
       <% else %>
-        <em class="card-text">Rental requested</em> <br>
+        <em class="card-text text-info">Rental requested</em> <br>
         <%= link_to "Accept or refuse", edit_booking_path(@my_rental), class: "btn btn-warning" %>
       <% end %>
       <%= link_to "Contact the tenant", "mailto:#{@my_rental.user.email}", class: "btn btn-primary" %>
