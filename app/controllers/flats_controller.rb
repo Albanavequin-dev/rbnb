@@ -17,6 +17,15 @@ class FlatsController < ApplicationController
 
   def show
     authorize @flat
+    if @flat.user == current_user
+      @my_flat = @flat
+    end
+    @markers = @flat.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def new
