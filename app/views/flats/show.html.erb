@@ -22,7 +22,7 @@
           <% end %>
         </ul>
         <%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
-        <%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %> <br>
+        <%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %> <br><br>
         <% if @my_flat != nil %>
           <%= link_to  "Edit my flat", edit_flat_path(@flat), class: 'btn btn-warning' %> <br>
         <% end %>
