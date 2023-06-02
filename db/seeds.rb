@@ -7,11 +7,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 require 'geocoder'
+require 'uri'
 
 Booking.destroy_all
 Flat.destroy_all
 
-
+puts "Creating users"
 10.times do
   User.create!(
     first_name: Faker::Name.first_name,
@@ -21,7 +22,7 @@ Flat.destroy_all
     password: Faker::Internet.password
   )
 end
-
+puts "Users done"
 users = User.all
 
 ad = ['41 Stewart St, Melbourne',
@@ -36,6 +37,21 @@ ad = ['41 Stewart St, Melbourne',
       "Piazza di Trevi, Rome, Italy"
     ]
 
+pictures = ['https://www.home-designing.com/wp-content/uploads/2017/10/white-sectional-sofa.jpg',
+      'https://www.home-designing.com/wp-content/uploads/2019/01/nesting-coffee-tables.jpg',
+      'https://www.home-designing.com/wp-content/uploads/2014/10/lovely-living-room1.jpg',
+      'https://www.relocatemagazine.com/media/images/scarpa-16_14791_compressed_31FCD1C449F3178CE482BACDE88E7BA5.jpg',
+      'https://e0.pxfuel.com/wallpapers/12/377/desktop-wallpaper-beautiful-houses-beautiful-mansion.jpg',
+      'https://archello.s3.eu-central-1.amazonaws.com/images/2021/02/02/leo-romano-most-beautiful-house-private-houses-archello.1612253803.2979.jpg',
+      'https://architecturebeast.com/wp-content/uploads/2014/09/Most_Beautiful_Houses_In_The_World_House_M_featured_on_architecture_beast_39.jpg',
+      'https://img.freepik.com/premium-photo/3d-rendering-nice-modern-style-wood-house-beautiful-village_105762-146.jpg',
+      'https://www.home-designing.com/wp-content/uploads/2009/10/white-living-room.jpg',
+      'https://wallpaperaccess.com/full/1700228.jpg'
+    ]
+puts "Creatings flats"
+url = URI.parse("https://www.home-designing.com/wp-content/uploads/2017/10/white-sectional-sofa.jpg")
+filename = File.basename(url.path)
+file = URI.open(url)
 ad.each do |address|
   10.times do
     flat = Flat.new(
@@ -45,9 +61,12 @@ ad.each do |address|
       wifi: [true, false].sample,
       TV: [true, false].sample,
       parking: [true, false].sample,
-      air_conditioner: [true, false].sample
+      air_conditioner: [true, false].sample,
     )
+    flat.image.attach(io: File.open("Logo.png"), filename: "Logo.png", content_type: "image/jpg")
     flat.user = users.sample
-    flat.save
+    flat.save!
   end
 end
+
+puts "Flats created"
