@@ -20,7 +20,6 @@ class FlatsController < ApplicationController
     if @flat.user == current_user
       @my_flat = @flat
     end
-
     @markers = [{
       lat: @flat.latitude,
       lng: @flat.longitude,
