@@ -38,7 +38,7 @@
           </ul>
         </div>
 
-        <ul class="navbar-nav">
+        <ul class="navbar">
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to "#{current_user.first_name} #{current_user.last_name}", edit_user_registration_path, class: "nav-link  button-navbar" %>
