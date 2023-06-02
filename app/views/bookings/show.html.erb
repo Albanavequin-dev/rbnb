@@ -1,12 +1,13 @@
 <% if @my_rental.nil? %>
-
-
-  <a href="<%= bookings_path %>" class="back-to-rental">
-    <i class="fa-solid fa-arrow-left fa-2x"></i>
-  </a>
-  <div class="card">
+<div class="center-header">
 <h1>Booking Details</h1>
+</div>
+<div class="btn-back-booking"><a href="<%= bookings_path %>" class="btn btn-primary btn-back">
+<i class="fa-solid fa-left-long"></i>  </a></div>
 
+
+
+  <div class="card">
     <div class="card-body">
       <h3 class="card-title"><%= @my_booking.flat.name %></h3>
       <%= link_to "Edit my booking", edit_booking_path(@my_booking), class: "btn btn-warning btn-edit " %>
