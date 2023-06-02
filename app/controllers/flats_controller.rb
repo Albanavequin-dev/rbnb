@@ -17,6 +17,9 @@ class FlatsController < ApplicationController
 
   def show
     authorize @flat
+    if @flat.user == current_user
+      @my_flat = @flat
+    end
   end
 
   def new
