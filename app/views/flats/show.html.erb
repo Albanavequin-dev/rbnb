@@ -10,5 +10,12 @@
 <p>Air Conditioner: <%= @flat.air_conditioner? ? "Yes" : "No" %></p>
 
 <%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
-<%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %>
+<%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %> <br>
+<% if @my_flat != nil %>
+  <%= link_to  "Modify my flat", edit_flat_path(@flat), class: 'btn btn-warning back-home-btn' %> <br>
+<% end %>
 </div>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
