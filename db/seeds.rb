@@ -12,20 +12,16 @@ require 'open-uri'
 Booking.destroy_all
 Flat.destroy_all
 
-# puts " creating users"
+puts "Creating users"
 
-10.times do
-  User.create!(
+user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     birthdate: Faker::Date.birthday(min_age: 18, max_age: 65).strftime("%Y-%m-%d"),
-    email: Faker::Internet.email,
-    password: Faker::Internet.password
+    email: "alban@lewagon.fr",
+    password: "secret"
   )
-end
-
-# puts "user's done"
-users = User.all
+puts "Users done"
 
 ad = ['41 Stewart St, Melbourne',
       "10 Downing Street, London, United Kingdom",
@@ -38,15 +34,23 @@ ad = ['41 Stewart St, Melbourne',
       "Rue de Rivoli, Paris, France",
       "Piazza di Trevi, Rome, Italy"
     ]
-# puts " creating flats"
 
-# url = URI.parse('https://www.home-designing.com/wp-content/uploads/2017/10/white-sectional-sofa.jpg')
-# filename = File.basename(url.path)
-# file = URI.open(url).read
-
+pictures = ['https://www.home-designing.com/wp-content/uploads/2017/10/white-sectional-sofa.jpg',
+      'https://www.home-designing.com/wp-content/uploads/2019/01/nesting-coffee-tables.jpg',
+      'https://www.home-designing.com/wp-content/uploads/2014/10/lovely-living-room1.jpg',
+      'https://www.relocatemagazine.com/media/images/scarpa-16_14791_compressed_31FCD1C449F3178CE482BACDE88E7BA5.jpg',
+      'https://e0.pxfuel.com/wallpapers/12/377/desktop-wallpaper-beautiful-houses-beautiful-mansion.jpg',
+      'https://archello.s3.eu-central-1.amazonaws.com/images/2021/02/02/leo-romano-most-beautiful-house-private-houses-archello.1612253803.2979.jpg',
+      'https://architecturebeast.com/wp-content/uploads/2014/09/Most_Beautiful_Houses_In_The_World_House_M_featured_on_architecture_beast_39.jpg',
+      'https://img.freepik.com/premium-photo/3d-rendering-nice-modern-style-wood-house-beautiful-village_105762-146.jpg',
+      'https://www.home-designing.com/wp-content/uploads/2009/10/white-living-room.jpg',
+      'https://wallpaperaccess.com/full/1700228.jpg'
+    ]
+puts "Creatings flats"
 ad.each do |address|
+  file = URI.open(pictures.sample)
   flat = Flat.new(
-    name: Faker::Lorem.word,
+    name: Faker::Lorem.unique.word,
     address: address,
     description: Faker::Lorem.paragraph,
     wifi: [true, false].sample,
@@ -54,9 +58,10 @@ ad.each do |address|
     parking: [true, false].sample,
     air_conditioner: [true, false].sample
   )
-  # flat.image.attach(io: file, filename: filename)
-  flat.user = users.sample
+  flat.image.attach(io: file, filename: 'test.png', content_type: "image/png")
+  flat.user = user
   flat.save!
+  puts flat.image.attached?
 end
 
-# puts "flats ok"
+puts "Flats created"
