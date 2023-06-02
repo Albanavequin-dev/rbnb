@@ -1,14 +1,34 @@
-<h1>Flat Details</h1>
-<div class="flat-container">
-<%= image_tag @flat.image, id: "img" if @flat.image.attached? %>
+<div class="show_view">
+  <h1><%= @flat.name %></h1>
+  <div class="flat-container">
+    <%= image_tag @flat.image, id: "img" if @flat.image.attached? %>
 
-<p>Address: <%= @flat.address %></p>
-<p>Description: <%= @flat.description %></p>
-<p>Wifi: <%= @flat.wifi? ? "Yes" : "No" %></p>
-<p>TV: <%= @flat.TV? ? "Yes" : "No" %></p>
-<p>Parking: <%= @flat.parking? ? "Yes" : "No" %></p>
-<p>Air Conditioner: <%= @flat.air_conditioner? ? "Yes" : "No" %></p>
 
-<%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
-<%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %>
+    <p><strong><u>Address :</u></strong>  <%= @flat.address %></p>
+    <p><strong><u>Description :</u></strong>  <%= @flat.description %></p>
+
+   <p><strong><u>Options :</u></strong></p>
+
+<ul>
+  <% if @flat.wifi == true %>
+    <li>Wifi : ✅</li>
+  <% end %>
+
+  <% if @flat.TV == true %>
+    <li>TV : ✅</li>
+  <% end %>
+
+  <% if @flat.parking == true %>
+    <li>Parking : ✅</li>
+  <% end %>
+
+  <% if @flat.air_conditioner == true %>
+    <li>Air conditioner : ✅</li>
+  <% end %>
+</ul>
+
+
+    <%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
+    <%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %>
+  </div>
 </div>
