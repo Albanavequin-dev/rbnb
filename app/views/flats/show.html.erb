@@ -1,41 +1,38 @@
 <div class="show_view">
-  <h1><%= @flat.name %></h1>
-  <div class="flat-container">
-    <%= image_tag @flat.image, id: "img" if @flat.image.attached? %>
-
-
-    <p><strong><u>Address :</u></strong>  <%= @flat.address %></p>
-    <p><strong><u>Description :</u></strong>  <%= @flat.description %></p>
-
-   <p><strong><u>Options :</u></strong></p>
-
-<ul>
-  <% if @flat.wifi == true %>
-    <li>Wifi : ✅</li>
-  <% end %>
-
-  <% if @flat.TV == true %>
-    <li>TV : ✅</li>
-  <% end %>
-
-  <% if @flat.parking == true %>
-    <li>Parking : ✅</li>
-  <% end %>
-
-  <% if @flat.air_conditioner == true %>
-    <li>Air conditioner : ✅</li>
-  <% end %>
-</ul>
-
-
-    <%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
-    <%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %>
+  <div class="row">
+    <div class="col-md-7">
+      <h1><%= @flat.name %></h1>
+      <div class="container">
+        <%= image_tag @flat.image, id: "img" if @flat.image.attached? %>
+        <p><strong><u>Address :</u></strong>  <%= @flat.address %></p>
+        <p><strong><u>Description :</u></strong>  <%= @flat.description %></p>
+        <p><strong><u>Options :</u></strong></p>
+        <ul>
+          <% if @flat.wifi == true %>
+            <li>Wifi : ✅</li>
+          <% end %>
+          <% if @flat.TV == true %>
+            <li>TV : ✅</li>
+          <% end %>
+          <% if @flat.parking == true %>
+            <li>Parking : ✅</li>
+          <% end %>
+          <% if @flat.air_conditioner == true %>
+            <li>Air conditioner : ✅</li>
+          <% end %>
+        </ul>
+        <%= link_to "Book the place", new_flat_booking_path(@flat), class: 'btn btn-flat' %> <br>
+        <%= link_to  "Back to homepage", flats_path, class: 'btn btn-flat back-home-btn' %> <br>
+        <% if @my_flat != nil %>
+          <%= link_to  "Edit my flat", edit_flat_path(@flat), class: 'btn btn-warning' %> <br>
+        <% end %>
+      </div>
+    </div>
+    <% if @flat.geocoded? %>
+      <div class="col-md-5">
+        <div style="width: 100%; height: 100vh; position: sticky;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      </div>
+    <% end %>
   </div>
-
 </div>
 
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
