@@ -6,3 +6,6 @@ import "bootstrap"
 //= require cursor
 //= require DOMloaded
 //= require redirect
+import "./DOMloaded";
+import "./cursor";
+import "./redirect";
