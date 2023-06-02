@@ -28,9 +28,9 @@
                   <% message = "Only #{days_remaining} day(s) left until your arrival" %>
                   <% if booking.status == true %>
                   <%= message %>
-                  <p class="card-text green">Accepted</p>
+                  <p class="card-text text-success">Accepted</p>
                   <% elsif booking.status == false %>
-                  <p class="card-text red">Denied</p>
+                  <p class="card-text text-danger">Denied</p>
                   <% else %>
                   <em class="card-text text-info">Booking requested</em>
                   <% end %>
