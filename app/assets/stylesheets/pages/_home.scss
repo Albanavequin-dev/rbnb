@@ -20,6 +20,7 @@
   justify-items: center;
   padding: 0 100px;
   padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 .img-card-item {
@@ -33,7 +34,7 @@
   height: 400px;
   overflow-wrap: break-word;
   text-overflow: ellipsis;
-
+  overflow: hidden;
 }
 
 .img-item-container {
@@ -42,15 +43,18 @@
   padding: 10px;
 }
 
-.img-card-item img {
+.img-card-item > img {
   margin-top: 0px;
   padding:0px;
   border-radius: 8px 8px 0px 0px;
+  width: 100%;
+  height: 200px;
 }
 
 .img-item-container a {
   text-decoration: none;
   color: inherit;
+  font-size: 25px;
 }
 
 .img-item-container b {
