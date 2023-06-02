@@ -1,6 +1,6 @@
-<div class="bgimg">
-  <h1>Looking for a Flat ?</h1>
-  <h3> search a location here :</h3>
+<div class="banner">
+  <h1>Looking for a nice place to stay ?</h1>
+  <h3> Type your dream location here :</h3>
   <div class="container-home">
     <div class="row justify-content-center">
       <div class="col-sm-6">
@@ -19,17 +19,19 @@
   <div class="cursor2"></div>
 </div>
 
-<% if @address.present? %>
-<h3>Results for "<%= (@address) %>":</h3>
-<% end %>
+<div class = "searchresults">
+  <% if @address.present? %>
+  <h3>Here are the flats available around "<%= (@address) %>":</h3>
+  <% end %>
 
-<div class="grid-container ">
-  <% @flats.each do |flat|%>
-  <div class="img-card-item row justify-content-center">
-  <%= image_tag flat.image, class: "img" if flat.image.attached? %>
-        <div class="img-item-container ">
- <b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %>
+  <div class="grid-container ">
+    <% @flats.each do |flat|%>
+    <div class="img-card-item row justify-content-center">
+    <%= image_tag flat.image, class: "img" if flat.image.attached? %>
+          <div class="img-item-container ">
+  <b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %>
+    </div>
+    </div>
+    <% end  %>
   </div>
-  </div>
-  <% end  %>
 </div>
