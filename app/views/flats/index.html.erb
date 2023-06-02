@@ -19,19 +19,23 @@
   <div class="cursor2"></div>
 </div>
 
+
+
 <div class = "searchresults">
   <% if @address.present? %>
-  <h3>Here are the flats available around "<%= (@address) %>":</h3>
+    <h3>Here are the flats available around "<%= (@address) %>":</h3>
+  <% else %>
+    <h3 class="disappear-on-search">All our flats available are displayed here : </h3>
   <% end %>
 
-  <div class="grid-container ">
-    <% @flats.each do |flat|%>
-    <div class="img-card-item row justify-content-center">
-    <%= image_tag flat.image, class: "img" if flat.image.attached? %>
-          <div class="img-item-container ">
-  <b><%= link_to  flat.name,  flat_path(flat)%> </b> : <i><u> <%= flat.address  %> </i></u> ; <%= flat.description  %>
-    </div>
-    </div>
-    <% end  %>
+   <div class="grid-container">
+    <% @flats.each do |flat| %>
+      <div class="img-card-item row justify-content-center">
+        <%= image_tag flat.image, class: "img" if flat.image.attached? %>
+        <div class="img-item-container">
+          <b><%= link_to flat.name, flat_path(flat) %> :</b> <i><u><%= flat.address %></i></u>; <%= flat.description %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

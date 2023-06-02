@@ -7,10 +7,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 require 'geocoder'
+require 'open-uri'
 
 Booking.destroy_all
 Flat.destroy_all
 
+# puts " creating users"
 
 10.times do
   User.create!(
@@ -22,6 +24,7 @@ Flat.destroy_all
   )
 end
 
+# puts "user's done"
 users = User.all
 
 ad = ['41 Stewart St, Melbourne',
@@ -35,19 +38,25 @@ ad = ['41 Stewart St, Melbourne',
       "Rue de Rivoli, Paris, France",
       "Piazza di Trevi, Rome, Italy"
     ]
+# puts " creating flats"
+
+# url = URI.parse('https://www.home-designing.com/wp-content/uploads/2017/10/white-sectional-sofa.jpg')
+# filename = File.basename(url.path)
+# file = URI.open(url).read
 
 ad.each do |address|
-  10.times do
-    flat = Flat.new(
-      name: Faker::Lorem.word,
-      address: address,
-      description: Faker::Lorem.paragraph,
-      wifi: [true, false].sample,
-      TV: [true, false].sample,
-      parking: [true, false].sample,
-      air_conditioner: [true, false].sample
-    )
-    flat.user = users.sample
-    flat.save
-  end
+  flat = Flat.new(
+    name: Faker::Lorem.word,
+    address: address,
+    description: Faker::Lorem.paragraph,
+    wifi: [true, false].sample,
+    TV: [true, false].sample,
+    parking: [true, false].sample,
+    air_conditioner: [true, false].sample
+  )
+  # flat.image.attach(io: file, filename: filename)
+  flat.user = users.sample
+  flat.save!
 end
+
+# puts "flats ok"
