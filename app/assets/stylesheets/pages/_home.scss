@@ -156,12 +156,12 @@
 }
 
 .card {
-  position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 0px;
   justify-content: center;
+  display: flex;
 }
 
 
@@ -183,4 +183,8 @@
   position:absolute;
   left: 35%;
   top: 20%;
+}
+
+.row {
+  display: flex;
 }

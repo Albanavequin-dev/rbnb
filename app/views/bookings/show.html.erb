@@ -49,7 +49,7 @@
           <em><%= @my_rental.message_customer %><em></p>
         <% end %>
         <% days_remaining = (@my_rental.arrival_date - Date.today).to_i %>
-        <% message = "Only #{days_remaining} day(s) left until your arrival" %>
+        <% message = "Only #{days_remaining} day(s) left until your guess arrival" %>
         <% if @my_rental.status == true %>
           <%= message %>
           <p class="card-text text-success">Accepted</p>

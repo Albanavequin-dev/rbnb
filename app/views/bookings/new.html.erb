@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="bg-white rounded p-3 shadow">
-        <h3>Book a flat</h1>
+        <h3>Book a flat</h3>
+        <h4>You are booking: <%= @flat.name %></h4><br>
           <%= render "customer-form-booking", task: @booking %>
       </div>
     </div>
